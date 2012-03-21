@@ -254,7 +254,7 @@ class Thor
     protected
 
       # The method responsible for dispatching given the args.
-      def dispatch(meth, given_args, given_opts, config) #:nodoc:
+      def dispatch(meth, given_args, given_opts, config) #:nodoc:        
         meth ||= retrieve_task_name(given_args)
         task = all_tasks[normalize_task_name(meth)]
 

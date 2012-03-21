@@ -6,6 +6,7 @@ class Thor
     # and one with switches.
     #
     def self.split(args)
+      
       arguments = []
 
       args.each do |item|

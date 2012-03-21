@@ -26,6 +26,7 @@ class Thor
 
     # Takes a hash of Thor::Option and a hash with defaults.
     def initialize(hash_options={}, defaults={})
+      require 'debug'
       options = hash_options.values
       super(options)
 
@@ -44,6 +45,7 @@ class Thor
           @shorts[short.to_s] ||= option.switch_name
         end
       end
+      
     end
 
     def remaining

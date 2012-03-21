@@ -219,12 +219,11 @@ class Thor::Group
     protected
 
       # The method responsible for dispatching given the args.
-      def dispatch(task, given_args, given_opts, config) #:nodoc:
+      def dispatch(task, given_args, given_opts, config) #:nodoc:        
         if Thor::HELP_MAPPINGS.include?(given_args.first)
           help(config[:shell])
           return
         end
-
         args, opts = Thor::Options.split(given_args)
         opts = given_opts || opts
 

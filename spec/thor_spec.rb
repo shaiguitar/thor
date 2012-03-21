@@ -2,6 +2,15 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe Thor do
   describe "#method_option" do
+    
+    it "can take a :filter option which passes the argument passed into a Proc" do
+      args = ["output_symbol", "-t", "-b", "UPPERCASE", "--num", "37"]      
+#      require 'debug'
+      FilterTaskArgScript.start(args) 
+      content = capture(:stdout) { FilterTaskArgScript.start(args) }
+      content.should =~ /uppercase/m
+    end
+    
     it "sets options to the next method to be invoked" do
       args = ["foo", "bar", "--force"]
       arg, options = MyScript.start(args)
@@ -21,7 +30,7 @@ describe Thor do
         arg, options = MyScript.start(["with_optional", "--lazy", "yesyes!"])
         options.should == { "lazy" => "yesyes!" }
       end
-
+      
       it "sets a default that can be overridden for numerics" do
         arg, options = MyScript.start(["with_optional", "--lazy-numeric"])
         options.should == { "lazy_numeric" => 42 }

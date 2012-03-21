@@ -38,13 +38,13 @@ class Thor
     # config<Hash>:: Configuration for this Thor class.
     #
     def initialize(args=[], options={}, config={})
+      
       parse_options = self.class.class_options
 
       # The start method splits inbound arguments at the first argument
       # that looks like an option (starts with - or --). It then calls
       # new, passing in the two halves of the arguments Array as the
-      # first two parameters.
-
+      # first two parameters.      
       if options.is_a?(Array)
         task_options  = config.delete(:task_options) # hook for start
         parse_options = parse_options.merge(task_options) if task_options
@@ -54,7 +54,7 @@ class Thor
         # with pre-parsed options.
         array_options, hash_options = [], options
       end
-
+      
       # Let Thor::Options parse the options first, so it can remove
       # declared options from the array. This will leave us with
       # a list of arguments that weren't declared.
@@ -507,7 +507,7 @@ class Thor
         def build_option(name, options, scope) #:nodoc:
           scope[name] = Thor::Option.new(name, options[:desc], options[:required],
                                                options[:type], options[:default], options[:banner],
-                                               options[:lazy_default], options[:group], options[:aliases], options[:hide])
+                                               options[:lazy_default], options[:group], options[:aliases], options[:hide], options[:filter])
         end
 
         # Receives a hash of options, parse them and add to the scope. This is a

@@ -1,15 +1,16 @@
 class Thor
   class Option < Argument #:nodoc:
-    attr_reader :aliases, :group, :lazy_default, :hide
+    attr_reader :aliases, :group, :lazy_default, :hide, :filter_block
 
     VALID_TYPES = [:boolean, :numeric, :hash, :array, :string]
 
-    def initialize(name, description=nil, required=nil, type=nil, default=nil, banner=nil, lazy_default=nil, group=nil, aliases=nil, hide=nil)
+    def initialize(name, description=nil, required=nil, type=nil, default=nil, banner=nil, lazy_default=nil, group=nil, aliases=nil, hide=nil, filter_block=nil)
       super(name, description, required, type, default, banner)
       @lazy_default = lazy_default
       @group        = group.to_s.capitalize if group
       @aliases      = [*aliases].compact
       @hide         = hide
+      @filter_block = filter_block
     end
 
     # This parse quick options given as method_options. It makes several

@@ -156,6 +156,7 @@ class Thor
 
       # Initialize klass using values stored in the @_initializer.
       def _parse_initialization_options(args, opts, config) #:nodoc:
+        
         stored_args, stored_opts, stored_config = @_initializer
 
         args ||= stored_args.dup
